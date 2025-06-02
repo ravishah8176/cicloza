@@ -3,9 +3,12 @@ package com.cicloza.service;
 import com.cicloza.util.ColorLogger;
 import com.fazecast.jSerialComm.*;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Sinks;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,6 +22,8 @@ public class SerialPortManager {
     private static final StringBuilder dataBuffer = new StringBuilder();
     private static final Map<String, SerialPort> openedPorts = new HashMap<>();
     private static final List<SerialPort> systemPorts = new ArrayList<>();
+    private static final Sinks.Many<String> messageSink = Sinks.many().multicast().onBackpressureBuffer();
+
 
     /**
      * Get a list of available serial ports on the system
@@ -180,7 +185,11 @@ public class SerialPortManager {
                             while (scanner.hasNextLine()) {
                                 String line = scanner.nextLine();
                                 dataBuffer.append(line).append("\n");
-                                processCompleteMessages();
+                                String newMessage = processCompleteMessages();
+                                if (!newMessage.isEmpty()) {
+                                    messageSink.tryEmitNext(newMessage + " emitted at: " + LocalTime.now());
+                                    logger.info("Message: {}", newMessage);
+                                }
                             }
                         } catch (IOException e) {
                             logger.error("Error reading from serial port {}: {}", managedPort.getSystemPortName(), e.getMessage());
@@ -232,10 +241,16 @@ public class SerialPortManager {
             }
 
             newMessage = dataBuffer.substring(0, endIndex + 1);
-            logger.info("Received complete message: {}", newMessage.trim());
-
             dataBuffer.delete(0, endIndex + 1);
         }
         return newMessage;
+    }
+
+    /**
+     * Provides a Flux stream of messages received from the serial port.
+     * @return A Flux<String> that emits messages as they are processed.
+     */
+    public Flux<String> getSerialDataFlux() {
+        return messageSink.asFlux();
     }
 }
