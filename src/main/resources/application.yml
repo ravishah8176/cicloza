@@ -1,0 +1,37 @@
+# DevTools Properties
+spring:
+  application:
+    name: cicloza-main
+  devtools:
+    restart:
+      enabled: true
+      poll-interval: 1000
+      quiet-period: 500
+    livereload:
+      enabled: true
+
+  # Enable ANSI output
+  output:
+    ansi:
+      enabled: ALWAYS
+
+  # PostgresSQL Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cicloza
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  # JPA/Hibernate Properties
+  jpa:
+    # Auto-updates DB schema to match entities (adds/changes columns/tables)
+    hibernate:
+      ddl-auto: none
+    # Prints all SQL statements to the console/log
+    show-sql: false
+    properties:
+      hibernate:
+        # SQL output is not pretty-printed (single line)
+        format_sql: false
+        # Uses PostgresSQL-specific SQL syntax and features
+        dialect: org.hibernate.dialect.PostgreSQLDialect 
