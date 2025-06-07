@@ -18,6 +18,7 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoderService passwordEncoderService;
     Logger logger = org.slf4j.LoggerFactory.getLogger(UserService.class);
 
     /**
@@ -60,6 +61,9 @@ public class UserService {
         validateRequiredFields(user);
         validateUniqueConstraints(user);
 
+        // Hash the password before saving
+        user.setPassword(passwordEncoderService.encode(user.getPassword()));
+
         logger.debug("User validation successful, proceeding with save");
         return userRepository.save(user);
     }
@@ -78,6 +82,12 @@ public class UserService {
         validateUpdateRequest(updateRequest);
         
         updateUserFields(existingUser, updateRequest);
+        
+        // If password is being updated, hash it
+        if (updateRequest.getPassword() != null) {
+            existingUser.setPassword(passwordEncoderService.encode(updateRequest.getPassword()));
+        }
+        
         return userRepository.save(existingUser);
     }
 
@@ -152,10 +162,6 @@ public class UserService {
         
         if (updateRequest.getRole() != null) {
             existingUser.setRole(updateRequest.getRole());
-        }
-        
-        if (updateRequest.getPassword() != null) {
-            existingUser.setPassword(updateRequest.getPassword());
         }
     }
 
