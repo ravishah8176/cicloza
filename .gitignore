@@ -1,0 +1,30 @@
+# =============================================================================
+# Root Level .gitignore for Cicloza Project
+# =============================================================================
+
+# IDE Files
+/.idea/
+/.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build artifacts that shouldn't be at root
+/build/
+/dist/
+/out/
+
+# =============================================================================
+# Note: Each subdirectory (Quanta/, Pulse/) should have their own .gitignore
+# =============================================================================
