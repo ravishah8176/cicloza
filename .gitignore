@@ -1,0 +1,41 @@
+# =============================================================================
+# Root Level .gitignore for Cicloza Project
+# =============================================================================
+
+# Prevent Maven target directory at root level
+/target/
+
+# IDE Files
+/.idea/
+/.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node modules (for future frontend)
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build artifacts that shouldn't be at root
+/build/
+/dist/
+/out/
+
+# =============================================================================
+# Note: Each subdirectory (Quanta/, Pulse/) should have their own .gitignore
+# =============================================================================
