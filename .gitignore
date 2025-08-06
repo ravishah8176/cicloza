@@ -2,9 +2,6 @@
 # Root Level .gitignore for Cicloza Project
 # =============================================================================
 
-# Prevent Maven target directory at root level
-/target/
-
 # IDE Files
 /.idea/
 /.vscode/
@@ -22,14 +19,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
-
-# Node modules (for future frontend)
-node_modules/
-
-# Environment files
-.env
-.env.local
-.env.*.local
 
 # Build artifacts that shouldn't be at root
 /build/
