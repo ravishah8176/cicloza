@@ -7,4 +7,12 @@ export default defineConfig({
   server: {
     port: 3000, // Port for the development server
   },
+  css: {
+    modules: {
+      // Use a more descriptive name format that includes the filename
+      // [local] is the class name defined in the CSS file
+      // [name] is the name of the file (without extension)
+      generateScopedName: '[name]_[local]'
+    }
+  }
 })
