@@ -10,7 +10,7 @@ import com.cicloza.util.ColorLogger;
 @SpringBootApplication
 @EntityScan(basePackages = "com.cicloza.entity")
 @EnableJpaRepositories(basePackages = "com.cicloza.repository")
-@ComponentScan(basePackages = {"com.cicloza.controller", "com.cicloza.service", "com.cicloza.util", "com.cicloza.exception"})
+@ComponentScan(basePackages = {"com.cicloza.controller", "com.cicloza.service", "com.cicloza.util", "com.cicloza.exception", "com.cicloza.config"})
 public class CiclozaMainApplication {
 	private static final ColorLogger logger = ColorLogger.getLogger(CiclozaMainApplication.class);
 

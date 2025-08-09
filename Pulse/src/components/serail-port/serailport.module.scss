@@ -1,0 +1,128 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.connectButton {
+  flex: 1;
+  padding: 12px;
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  
+  &:disabled {
+    background-color: #cccccc;
+    cursor: default;
+  }
+  
+  &:not(:disabled) {
+    background-color: #4285f4;
+  }
+}
+
+.disconnectButton {
+  flex: 1;
+  padding: 12px;
+  font-size: 20px;
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  
+  &:disabled {
+    cursor: default;
+  }
+  
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  
+  /* Responsive layout for mobile devices */
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.select {
+  width: 100%;
+  padding: 10px 32px 10px 12px; /* Increased right padding for the arrow */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  text-overflow: ellipsis;
+  
+  &:hover {
+    border-color: #a0a0a0;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+  }
+  
+  /* Remove default focus outlines for mouse users */
+  &:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.incomingDataContainer {
+  margin-top: 20px;
+}
+
+.textarea {
+  width: 100%;
+  height: 180px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  resize: none;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.errorMessage {
+  margin: 15px 0;
+  padding: 10px;
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  font-size: 14px;
+}
