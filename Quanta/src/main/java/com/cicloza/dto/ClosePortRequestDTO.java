@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BaseResponseDTO {
-    private String message;
+public class ClosePortRequestDTO {
+    private String portName;
 } 

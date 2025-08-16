@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OpenPortRequestDTO extends BaseRequestDTO {
+public class OpenPortRequestDTO {
+    private String portName;
     private int baudRate;
     private int dataBits;
 }
